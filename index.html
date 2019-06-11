@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Zootropo</title>
+<style>
+body{
+  background: black;
+  margin:0;
+  padding:0;
+  overflow: hidden;
+}
+button{
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  z-index: 3;
+  width:20%;
+  height: 80px;
+  border-radius: 40px;
+  background: rgba(0,0,0,0);
+  color:white;
+  border:solid 2px white;
+  font-size: 1.5em;
+  transition: all 300ms;
+  cursor: pointer;
+}
+button:hover{
+  transform: translate(-50%,-50%) scale(1.1);
+}
+button:active{
+  transform: translate(-50%,-50%) scale(0.9);
+  outline: none;
+}
+button:focus{
+  outline: none;
+}
+.strobo{
+  background: rgba(0,0,0,1);
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  animation: strobo 25ms infinite;
+  position: absolute;
+  display: none;
+}
+.zootropo{
+  background: url('./zootropo.png') center center no-repeat;
+  background-size: contain;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  animation: zootropo 1200ms infinite linear;
+  position: absolute;
+}
+@keyframes strobo {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes zootropo {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg) }
+}
+</style>
+</head>
+<body>
+  <button>START</button>
+  <div class="strobo"></div>
+  <div class="zootropo">
+  </div>
+<script>
+  const strobo = document.querySelector('.strobo');
+
+  strobo.style.display = "none";
+  const button = document.querySelector('button')
+  button.addEventListener("click",function(){
+    if(strobo.style.display === "none"){
+      strobo.style.display = "block"
+      button.innerHTML = "STOP"
+    }else{
+      strobo.style.display = "none"
+      button.innerHTML = "START"
+    }
+  })
+</script>
+</body>
+</html>
